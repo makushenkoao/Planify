@@ -1,5 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import colors from '../../../constants/colors';
+
 const { height } = Dimensions.get('window');
 
 export default StyleSheet.create({
@@ -37,5 +38,6 @@ export default StyleSheet.create({
     content: {
         padding: 46,
         paddingTop: 0,
+        backgroundColor: colors.white,
     },
 });

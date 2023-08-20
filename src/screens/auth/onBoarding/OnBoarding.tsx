@@ -1,16 +1,23 @@
 import { memo, useCallback } from 'react';
 import { Image, Text, View } from 'react-native';
-import styles from './styles';
 import { Button } from '../../../components/Button';
+import { NavigationProp } from '@react-navigation/native';
+import styles from './styles';
 
-export const OnBoarding = memo(() => {
+interface OnBoardingProps {
+    navigation: NavigationProp<any>;
+}
+
+export const OnBoarding = memo((props: OnBoardingProps) => {
+    const { navigation } = props;
+
     const onLogin = useCallback(() => {
-        console.log('click onLogin');
-    }, []);
+        navigation.navigate('Signin');
+    }, [navigation]);
 
     const onGetStarted = useCallback(() => {
-        console.log('click onGetStarted');
-    }, []);
+        navigation.navigate('Signup');
+    }, [navigation]);
 
     return (
         <View style={styles.container}>
