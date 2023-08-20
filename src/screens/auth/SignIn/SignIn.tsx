@@ -23,8 +23,14 @@ export const SignIn = memo((props: SignInProps) => {
     return (
         <SafeAreaView style={styles.container}>
             <Title>Welcome back!</Title>
-            <Input placeholder="Email" />
-            <Input placeholder="Password" />
+            <Input
+                placeholder="Email"
+                keyboardType="email-address"
+            />
+            <Input
+                placeholder="Password"
+                secureTextEntry
+            />
             <Button onPress={onLogin}>Login</Button>
             <Text style={styles.footerText}>
                 Not registered?

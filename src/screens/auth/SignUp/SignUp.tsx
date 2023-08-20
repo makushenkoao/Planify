@@ -37,9 +37,19 @@ export const SignUp = memo((props: SignUpProps) => {
             <Title>Joib the hunb!</Title>
             <Input placeholder="First name" />
             <Input placeholder="Last name" />
-            <Input placeholder="Email name" />
-            <Input placeholder="Password name" />
-            <Input placeholder="Confirm password name" />
+            <Input
+                placeholder="Email"
+                keyboardType="email-address"
+            />
+            <Input
+                placeholder="Password"
+                secureTextEntry
+            />
+            <Input
+                placeholder="Confirm password"
+                secureTextEntry
+            />
+
             <View style={styles.row}>
                 <Checkbox
                     checked={checked}
