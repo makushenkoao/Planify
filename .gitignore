@@ -1,5 +1,3 @@
-note.txt
-
 # OSX
 #
 .DS_Store
@@ -71,3 +69,6 @@ yarn-error.log
 
 /ios/GoogleService-Info.plist
 /android/app/google-services.json
+
+# Personal
+note.txt
