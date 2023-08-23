@@ -79,7 +79,7 @@ export const AddTask = memo((props: AddTaskProps) => {
                 setIsLoading(false);
                 Alert.alert(e.message);
             });
-    }, [category, deadline, navigation, title, user?.uid]);
+    }, [category, deadline, dispatch, navigation, title, user?.uid]);
 
     return (
         <SafeAreaView style={styles.container}>
