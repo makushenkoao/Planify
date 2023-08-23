@@ -7,7 +7,7 @@ export const PlusIcon = memo(() => {
     const navigation = useNavigation();
 
     const onPress = () => {
-        navigation.navigate('AddTask');
+        navigation.navigate('AddTask' as never);
     };
 
     return (

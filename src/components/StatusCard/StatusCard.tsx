@@ -15,7 +15,7 @@ export const StatusCard = memo((props: StatusCardProps) => {
     const styles = getStyles(type);
 
     const onPress = useCallback(() => {
-        navigation.navigate('Tasks');
+        navigation.navigate('Tasks' as never);
     }, [navigation]);
 
     return (

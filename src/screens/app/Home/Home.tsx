@@ -10,7 +10,6 @@ import { memo, useEffect, useState } from 'react';
 import { Header } from '../../../components/Header';
 import { PlusIcon } from '../../../components/PlusIcon';
 import { Title } from '../../../components/Title';
-import firestore from '@react-native-firebase/firestore';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { getUserData } from '../../../store/user';
 import { ITask } from '../../../types/task';
@@ -18,6 +17,7 @@ import { setTasks } from '../../../store/tasks';
 import { StatusCard } from '../../../components/StatusCard';
 import { NavigationProp } from '@react-navigation/native';
 import moment from 'moment';
+import firestore from '@react-native-firebase/firestore';
 
 interface HomeProps {
     navigation: NavigationProp<any>;
@@ -45,13 +45,19 @@ export const Home = memo((props: HomeProps) => {
             .then((querySnapshot) => {
                 const tasksList: ITask[] = [];
 
-                // TODO
                 querySnapshot.forEach((documentSnapshot) => {
-                    //@ts-ignore
-                    tasksList.push({
+                    const taskData = documentSnapshot.data();
+
+                    const task: ITask = {
                         uid: documentSnapshot.id,
-                        ...(documentSnapshot.data() || {}),
-                    });
+                        userId: user?.uid || '',
+                        checked: taskData.checked || false,
+                        category: taskData.category || '',
+                        deadline: taskData.deadline.toDate(),
+                        title: taskData.title || '',
+                    };
+
+                    tasksList.push(task);
                 });
 
                 dispatch(setTasks(tasksList));
@@ -67,9 +73,8 @@ export const Home = memo((props: HomeProps) => {
             );
             const today = moment(new Date()).format('YYYY-MM-DD');
             const dueDeadline = tasks?.filter((task: ITask) => {
-                // TODO
-                // @ts-ignore
                 const deadline = task?.deadline?.seconds * 1000;
+                console.log(task?.deadline);
                 const deadlineFormatted = moment(deadline).format('YYYY-MM-DD');
                 return moment(deadlineFormatted).isBefore(today);
             });
