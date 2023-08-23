@@ -1,7 +1,7 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 export interface ITask {
-    uid: string;
+    uid?: string;
     userId: string;
     checked: boolean;
     category: string;

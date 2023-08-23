@@ -8,6 +8,7 @@ export default StyleSheet.create({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         marginHorizontal: 24,
     },
     box: {

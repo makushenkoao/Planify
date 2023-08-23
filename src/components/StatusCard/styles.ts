@@ -9,7 +9,7 @@ const getStyles = (type?: 'error') =>
             borderRadius: 15,
             padding: 12,
             marginRight: 8,
-            width: '30%',
+            width: 100,
         },
         label: {
             marginBottom: 13,

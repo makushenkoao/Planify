@@ -46,18 +46,10 @@ export const Home = memo((props: HomeProps) => {
                 const tasksList: ITask[] = [];
 
                 querySnapshot.forEach((documentSnapshot) => {
-                    const taskData = documentSnapshot.data();
-
-                    const task: ITask = {
+                    tasksList.push({
                         uid: documentSnapshot.id,
-                        userId: user?.uid || '',
-                        checked: taskData.checked || false,
-                        category: taskData.category || '',
-                        deadline: taskData.deadline.toDate(),
-                        title: taskData.title || '',
-                    };
-
-                    tasksList.push(task);
+                        ...((documentSnapshot.data() as ITask) || {}),
+                    });
                 });
 
                 dispatch(setTasks(tasksList));
@@ -67,19 +59,18 @@ export const Home = memo((props: HomeProps) => {
     useEffect(() => {
         if (tasks?.length) {
             const highPriority = tasks?.filter(
-                (task: ITask) =>
+                (task) =>
                     task?.category === 'urgent' ||
                     task?.category === 'important',
             );
             const today = moment(new Date()).format('YYYY-MM-DD');
-            const dueDeadline = tasks?.filter((task: ITask) => {
+            const dueDeadline = tasks?.filter((task) => {
                 const deadline = task?.deadline?.seconds * 1000;
-                console.log(task?.deadline);
                 const deadlineFormatted = moment(deadline).format('YYYY-MM-DD');
                 return moment(deadlineFormatted).isBefore(today);
             });
             const quickWin = tasks?.filter(
-                (task: ITask) => task?.category === 'quick_task',
+                (task) => task?.category === 'quick_task',
             );
 
             setCounts({
