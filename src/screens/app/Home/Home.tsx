@@ -90,16 +90,16 @@ export const Home = memo((props: HomeProps) => {
                 <View style={styles.row}>
                     <StatusCard
                         label="High Priority"
-                        count={counts?.highPriority}
+                        count={counts?.highPriority || 0}
                     />
                     <StatusCard
                         label="Due Deadline"
                         type="error"
-                        count={counts?.dueDeadline}
+                        count={counts?.dueDeadline || 0}
                     />
                     <StatusCard
                         label="Quick Win"
-                        count={counts?.quickWin}
+                        count={counts?.quickWin || 0}
                     />
                 </View>
                 <TouchableOpacity

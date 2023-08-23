@@ -62,7 +62,6 @@ export const Tasks = memo(() => {
     return (
         <SafeAreaView style={styles.container}>
             <Header title="Tasks" />
-
             <FlatList
                 ListHeaderComponent={
                     <View style={{ marginBottom: 24 }}>
@@ -81,7 +80,6 @@ export const Tasks = memo(() => {
                 renderItem={renderTask}
                 keyExtractor={(item) => String(item?.uid)}
             />
-
             <PlusIcon />
         </SafeAreaView>
     );

@@ -64,7 +64,7 @@ export const SignIn = memo((props: SignInProps) => {
             <Input
                 onChangeText={(v) => onChange(v, 'password')}
                 placeholder="Password"
-                secureTextEntry
+                // secureTextEntry
             />
             <Button onPress={onSubmit}>Login</Button>
             <Text style={styles.footerText}>

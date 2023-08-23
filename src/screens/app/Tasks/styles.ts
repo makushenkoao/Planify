@@ -18,4 +18,11 @@ export default StyleSheet.create({
     checked: {
         textDecorationLine: 'line-through',
     },
+    text: {
+        textAlign: 'center',
+        fontSize: 16,
+        padding: 24,
+        lineHeight: 24,
+        color: colors.black,
+    },
 });
