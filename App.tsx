@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { Routes } from './src/routes/Routes';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
 
 function App() {
     const theme = {
@@ -11,9 +13,11 @@ function App() {
         },
     };
     return (
-        <NavigationContainer theme={theme}>
-            <Routes />
-        </NavigationContainer>
+        <Provider store={store}>
+            <NavigationContainer theme={theme}>
+                <Routes />
+            </NavigationContainer>
+        </Provider>
     );
 }
 

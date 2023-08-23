@@ -18,6 +18,9 @@ import styles from './styles';
 import { Button } from '../../../components/Button';
 import firestore from '@react-native-firebase/firestore';
 import moment from 'moment';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { getUserData } from '../../../store/user';
+import { setToUpdate } from '../../../store/tasks';
 
 interface AddTaskProps {
     navigation: NavigationProp<any>;
@@ -28,6 +31,8 @@ export const AddTask = memo((props: AddTaskProps) => {
     const [title, setTitle] = useState<string>('');
     const [deadline, setDeadline] = useState<Date>(new Date());
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const user = useAppSelector(getUserData);
+    const dispatch = useAppDispatch();
 
     const onBack = useCallback(() => {
         navigation.goBack();
@@ -54,17 +59,19 @@ export const AddTask = memo((props: AddTaskProps) => {
         setIsLoading(true);
         firestore()
             .collection('Tasks')
-            .doc('ABC')
-            .set({
+            .add({
                 title,
                 deadline,
                 category,
+                checked: false,
+                userId: user?.uid,
             })
             .then(() => {
                 setIsLoading(false);
                 navigation.navigate('Tasks');
                 setTitle('');
                 setDeadline(new Date());
+                dispatch(setToUpdate());
                 setCategory(null);
             })
             .catch((e) => {
@@ -72,7 +79,7 @@ export const AddTask = memo((props: AddTaskProps) => {
                 setIsLoading(false);
                 Alert.alert(e.message);
             });
-    }, [category, deadline, navigation, title]);
+    }, [category, deadline, navigation, title, user?.uid]);
 
     return (
         <SafeAreaView style={styles.container}>

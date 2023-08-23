@@ -11,6 +11,8 @@ import { AddTask } from '../screens/app/AddTask';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { Image, StyleSheet } from 'react-native';
 import { DrawerContent } from '../components/DrawerContent';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { getUserData, setUser } from '../store/user';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -57,16 +59,17 @@ const Tabs = () => (
 
 export const Routes = memo(() => {
     const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(getUserData);
 
     const onAuthStateChanged = useCallback(
         (new_user: FirebaseAuthTypes.User | null) => {
-            setUser(new_user);
+            dispatch(setUser(new_user));
             if (initializing) {
                 setInitializing(false);
             }
         },
-        [initializing],
+        [dispatch, initializing],
     );
 
     useEffect(() => {

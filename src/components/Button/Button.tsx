@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { StyleProp, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import { memo, ReactNode } from 'react';
 import styles from './styles';
 
@@ -8,7 +8,7 @@ interface ButtonProps {
     children: ReactNode;
     onPress: () => void;
     variant?: ButtonVariant;
-    style: any;
+    style?: StyleProp<ViewStyle>;
 }
 
 export const Button = memo((props: ButtonProps) => {

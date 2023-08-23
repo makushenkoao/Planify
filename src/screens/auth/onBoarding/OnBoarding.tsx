@@ -34,7 +34,12 @@ export const OnBoarding = memo((props: OnBoardingProps) => {
                     Get organized by sorting out all your tasks and boost your
                     productivity
                 </Text>
-                <Button onPress={onLogin}>Log in</Button>
+                <Button
+                    variant="primary"
+                    onPress={onLogin}
+                >
+                    Log in
+                </Button>
                 <Button
                     variant="secondary"
                     onPress={onGetStarted}

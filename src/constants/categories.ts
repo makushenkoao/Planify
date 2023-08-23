@@ -5,7 +5,7 @@ export interface Category {
 
 export const categories: Category[] = [
     {
-        label: 'Quick Task',
+        label: 'Quick task',
         value: 'quick_task',
     },
     {
