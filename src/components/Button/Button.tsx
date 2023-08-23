@@ -8,13 +8,14 @@ interface ButtonProps {
     children: ReactNode;
     onPress: () => void;
     variant?: ButtonVariant;
+    style: any;
 }
 
 export const Button = memo((props: ButtonProps) => {
-    const { children, onPress, variant = 'primary' } = props;
+    const { children, onPress, variant = 'primary', style } = props;
     return (
         <TouchableOpacity
-            style={[styles.container, styles[variant]]}
+            style={[styles.container, styles[variant], style]}
             onPress={onPress}
         >
             <Text style={styles.text}>{children}</Text>
